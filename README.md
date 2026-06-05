@@ -19,10 +19,6 @@
   <img width="512" alt="image" src="https://github.com/user-attachments/assets/93f97616-8aaf-4206-857a-5d17aed8c4d2" />
 </p>
 
-### Windows
-<p align="center">
-  <img width="512" alt="image" src="https://github.com/user-attachments/assets/f40bc167-62b7-4b29-91e0-15e07a76e21c" />
-</p>
 
 ## 部署教程
 
