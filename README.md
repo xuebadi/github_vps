@@ -1,8 +1,16 @@
-# github_vps
+# 🖥️ GitHub Codespaces Windows 11 云桌面
 
-在 GitHub 上申请免费的 VPS。
+> 在浏览器中使用免费的 Windows 11 桌面，基于 GitHub Codespaces + Docker。
 
-> 图文教程：https://mp.weixin.qq.com/s/vnA2AXD5zXiXGJNPdNH0BA
+## 🚀 快速开始
+
+1. 打开本仓库，点击绿色 **"Code"** 按钮 → 选择 **"Create codespace on main"**
+2. 等待 Codespace 构建完成（约 2 分钟）
+3. 设置脚本会自动执行：
+   - 拉取 `dockur/windows` Docker 镜像（首次约 10-15 分钟，约 10GB）
+   - 启动 Windows 11 容器（支持 KVM 硬件加速）
+4. **打开端口 8006**（Ports 面板中可见，或等待自动转发）
+5. 在浏览器中即可使用 Windows 11 桌面！
 
 ## 创建示例
 
@@ -187,6 +195,31 @@ bash start.sh stop win11
 ```
 
 ## 常见问题
+
+## ⚠️ 限制说明
+
+1. **免费额度**：每月 120 核心小时
+   - 4 核配置 = 约 30 小时/月
+   - 2 核配置 = 约 60 小时/月
+2. **数据持久性**：Docker 卷会保留数据，但 Codespace 本身是临时的
+   - 重要文件请保存到 GitHub 或下载到本地
+3. **Windows 未激活**：右下角有水印（功能完全正常）
+4. **性能**：不适合重度计算或游戏
+5. **首次启动**：Windows 安装需要 5-10 分钟
+6. **无音频**：Web 方式（noVNC）不支持音频
+
+## 🏗️ 架构
+
+`
+GitHub Codespaces（Linux 虚拟机）
+└── Docker-in-Docker
+    └── dockur/windows 容器
+        ├── QEMU/KVM 虚拟化
+        ├── Windows 11 客户系统
+        ├── noVNC（Web 远程桌面 :8006）
+        └── RDP 服务（:3389）
+`
+
 ### 远程控制延迟太高
 默认codespaces的VNC是卡的。可以在系统里装一个远程控制软件，比如Todesk、向日葵等，速度就很快了。
 
@@ -199,6 +232,10 @@ bash start.sh stop win11
 没有活动下会被删，可以跑点任务，并把auto-delete关了：
 
 <img width="1080" height="491" alt="image" src="https://github.com/user-attachments/assets/88001754-7bc5-4b43-b854-e3b2a02ee033" />
+
+## 📄 许可
+
+本项目使用 [dockur/windows](https://github.com/dockur/windows) Docker 镜像。
 
 
 
